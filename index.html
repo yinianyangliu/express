@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>water-cup-problem</title>
+<style type="text/css">
+input.n {width: 36px; text-align: center; border: solid 1px #cc0000; margin-right: 1px;}
+td {text-align: center;}
+#btnSolve {width: 80px; height: 30px;}
+</style>
+</head>
+
+<body>
+<h2>杯子倒水问题求最优解</h2>
+<table cellspacing="0" cellpadding="0" border="0"><tr>
+	<td>3个杯子：</td>
+	<td>A</td>
+	<td>B</td>
+	<td>C</td>
+</tr>
+<tr>
+	<td>初始水量：</td>
+	<td><input class="n" value="0"></td>
+	<td><input class="n" value="0"></td>
+	<td><input class="n" value="0"></td>
+</tr>
+<tr>
+	<td>装满容量：</td>
+	<td><input class="n" value="8"></td>
+	<td><input class="n" value="13"></td>
+	<td><input class="n" value="21"></td>
+</tr>
+</table>
+(如果是2个杯子的题，可将C的两个值设为0)
+<br><input type="checkbox" id="allowEmpty" checked>下水道(允许将杯子水倒入下水道)
+<br><input type="checkbox" id="allowFull" checked>水龙头(允许从水龙头接满水杯)
+<br>结局要求：
+<select id="resultI">
+	<option value="0">A
+	<option value="1">B
+	<option value="2" selected>C
+</select>剩余<input class="n" value="1" id="resultV">
+<br>最大搜索步数：<input class="n" value="20" id="maxdepth">
+<br>最多显示结果数：<input class="n" value="10" id="maxresults">
+<br><button id="btnSolve">求解</button>
+<div id="resultArea"></div>
+<br>新浪微博: <a href="http://weibo.com/cuixiping" target="_blank">@IginCui</a>
+<br>安卓游戏：<a href="https://play.google.com/store/apps/details?id=com.cioraneanu.water" target="_blank">Water Logic</a>
+<br>2013-03-24
+
+<script>
+var ALL={};
+var G=[]; //A,B,C,depth,index
+G[0]=[]; //第0步的局面数组
+G[0][0]=[0,0,0];
+var max=[10,7,5];
+var result = {i:1,v:1}; //结果要第0个杯子有1升水
+var maxdepth = 15; //最大搜索深度
+var maxresults = 10; //最多显示结果数
+var found; //搜到正确结果的深度
+var allowEmpty, allowFull;
+var ops;
+var output=[];
+
+function $$(id){return document.getElementById(id);}
+$$('btnSolve').onclick = function (){
+	init();
+	var i=0;
+	while(!search(i)){
+		i++;
+	}
+	$$('resultArea').innerHTML = output.join('');
+};
+function init(){
+	ALL={};
+	G=[]; //A,B,C,depth,index
+	found=undefined;
+	output.length=0;
+	var es = document.getElementsByTagName("input");
+	G[0]=[]; //第0步的局面数组
+	G[0][0]=[+es[0].value,+es[1].value,+es[2].value];
+	ALL[getValue(G[0][0])]=0;  //All[value]=depth
+	max=[+es[3].value,+es[4].value,+es[5].value];
+	result.i=+$$('resultI').value;
+	result.v=+$$('resultV').value;
+	maxdepth=+$$('maxdepth').value;
+	maxresults=+$$('maxresults').value;
+	allowEmpty=$$('allowEmpty').checked?'1':'0';
+	allowFull=$$('allowFull').checked?'1':'0';
+	ops = window['ops_'+allowEmpty+allowFull];
+}
+
+/**
+5 bit
+17=0x11
+24=0x18
+27=0x1B
+15bits能表示一种局面
+每局面最多有12种操作
+[局面值，深度，父局面索引]
+ALL={}以hash存储所有局面
+*/
+
+
+var OPS = [
+	['A入B', function(data){ //0入1
+		give(data,0,1);
+	}],
+	['A入C', function(data){ //0入2
+		give(data,0,2);
+	}],
+
+	['B入A', function(data){ //1入0
+		give(data,1,0);
+	}],
+	['B入C', function(data){ //1入2
+		give(data,1,2);
+	}],
+
+	['C入A', function(data){ //2入0
+		give(data,2,0);
+	}],
+	['C入B', function(data){ //2入1
+		give(data,2,1);
+	}],
+
+	['A倒空', function(data){ //0倒空
+		empty(data,0);
+	}],
+	['B倒空', function(data){ //1倒空
+		empty(data,1);
+	}],
+	['C倒空', function(data){ //2倒空
+		empty(data,2);
+	}],
+
+	['A装满', function(data){ //0装满
+		full(data,0);
+	}],
+	['B装满', function(data){ //1装满
+		full(data,1);
+	}],
+	['C装满', function(data){ //2装满
+		full(data,2);
+	}]
+];
+var ops_11=OPS;
+var ops_00=OPS.slice(0,6);
+var ops_01=OPS.slice(0,6).concat(OPS.slice(9));
+var ops_10=OPS.slice(0,9);
+
+function getValue(data){
+	return (data[0]<<12) + (data[1]<<6) + data[2];
+}
+function isOK(data){
+	return data[result.i]===result.v;
+}
+function full(data,i){
+	data[i]=max[i];
+}
+function empty(data,i){
+	data[i]=0;
+}
+function give(data,iFrom,iTo){
+	var sum = data[iFrom]+data[iTo];
+	if(sum>max[iTo]){
+		data[iTo] = max[iTo];
+		data[iFrom] = sum - max[iTo];
+	}else{
+		data[iTo] = sum;
+		data[iFrom] = 0;
+	}
+}
+
+function getStepsStr(steps){
+	for(var i=0,r='',n=steps.length;i<n;i++){
+		r+=ops[steps[i]][0]+'; ';
+	}
+	return r;
+}
+function getOpSteps(data){
+	var r=[],i,n=found;
+	r.unshift(data[3]);
+	pi=data[4];
+	while(--n>0){
+		pdata=G[n][pi];
+		r.unshift(pdata[3]);
+		pi=pdata[4];
+	}
+	return r;
+}
+function search(depth){
+	if(depth+1 > maxdepth){
+		output.push('<br>'+maxdepth+'步之内无解');
+		return true;
+	}
+	var datas = G[depth];
+	depth++;
+	G[depth]=[]; //depth深度的局面数组
+	var i,n,t,v,r=[],c=[];  //r means right, c means continue
+	for(var j=0,m=datas.length;j<m;j++){
+		var data = datas[j];
+		//共12种操作
+		for(i=0,n=ops.length;i<n;i++){
+			t=data.slice(0);
+			ops[i][1](t);
+			t[3]=i; //操作类别
+			t[4]=j; //父索引，用于回溯
+			v = getValue(t);
+			if(ALL.hasOwnProperty(v) && ALL[v]<depth){
+				continue;
+			}
+			ALL[v]=depth;
+			if(isOK(t)){
+				if(!found){
+					found = depth;
+				}
+				r.push(t);
+			}else if(!found){
+				c.push(t);
+			}
+		}
+	}
+	if(found){
+		output.push('<br>找到'+r.length+'种解法，步数'+found+'<ol>');
+		for(i=0,n=r.length;i<n && i<maxresults;i++){
+			var steps = getOpSteps(r[i]);
+			output.push('<li>'+getStepsStr(steps));
+		}
+		output.push('</ol>');
+		return true;
+	}else{
+		for(i=0,n=c.length;i<n;i++){
+			G[depth].push(c[i]);
+		}
+	}
+}
+</script>
+
+</body>
+</html>
