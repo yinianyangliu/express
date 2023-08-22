@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://www.makusi.cn/Home/Play/play_show/ws/YGdllmhm -->
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Lightly-HTML-Project</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/script.js"></script>
 
-    <title>情书是我抄的，但我爱你是真的</title>
     <script>
         //判断客户端设备，选择写入meta
         function init_viewport() {
@@ -49,70 +50,54 @@
     <meta name="x5-page-mode" content="app">
     <!-- windows phone 点击无高光 -->
     <meta name="msapplication-tap-highlight" content="no">
-
-
-
 </head>
 
-<body style="">
-    <div id="div_container">
-        <div id="div_start_bg"></div>
-
-        <div id="div_onlyyou" style="display: block; height: 1174px;">
-            <!-- 用于设置背景 -->
-            <div id="div_oy_inner" style="height: 1174px;">
-                <!-- 用于存放content -->
-                <div class="div_oy_text">
-                    <h1>做我女朋友好不好</h1>
-                    <p class="p_oy_text">小可爱，我喜欢你好久了。不只是遇见你，即使只是想起你，都会让我小鹿突突地乱撞。我一定会好好地疼你，你做我女朋友好不好？</p>
-                    <ul id="ul_oy_benefit">
-                        <li class="li_oy_benefit" style="display: list-item;">我会把全部工资都给你</li>
-                        <li class="li_oy_benefit" style="display: list-item;">每天做好吃的给你</li>
-                        <li class="li_oy_benefit" style="display: list-item;">你睡不着时给你讲故事</li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                        <li class="li_oy_benefit"></li>
-                    </ul>
-                </div>
-                <ul id="ul_oy_btn">
-                    <li onclick="oy_go_next()">Yes&nbsp;&nbsp;❤</li>
-                    <li onclick="oy_show_benefit()">No&nbsp;&nbsp;✖</li>
-                </ul>
-                <div id="div_oy_note" onclick="oy_hide_note()">
-                    请告诉我Yes！
-                    <div id="div_oy_note_close">✖</div>
-                </div>
-                <div id="div_oy_yes">
-                    太好了！哈哈~
-                </div>
-            </div>
+<body>
+    <div class="div_oy_text">
+        <h1 style="text-align: center;">让我们回去吧</h1>
+        <p class="p_oy_text" style="text-align: center;">小可爱，我喜欢你好久了。不只是遇见你，即使只是想起你，都会让我小鹿突突地乱撞。我一定会好好地疼你，你做我女朋友好不好？</p>
+        <ul id="ul_oy_benefit" style="text-align: center;">
+            <li class="li_oy_benefit">我会把全部工资都给你</li>
+            <li class="li_oy_benefit">每天做好吃的给你</li>
+            <li class="li_oy_benefit" ">你睡不着时给你讲故事</li>
+            <li class=" li_oy_benefit">爱的速递</li>
+            <li class="li_oy_benefit">啊啊</li>
+            <li class="li_oy_benefit">得到的</li>
+            <li class="li_oy_benefit">啊啊</li>
+            <li class="li_oy_benefit">定点</li>
+            <li class="li_oy_benefit">定点</li>
+            <li class="li_oy_benefit">的</li>
+            <li class="li_oy_benefit">的</li>
+            <li class="li_oy_benefit">的</li>
+            <li class="li_oy_benefit">啊</li>
+        </ul>
+    </div>
+    <div id="ul_oy_btn1" style="text-align: center;">
+        <button class="btn" onclick="oy_go_next()"><span>Yes&nbsp;&nbsp;❤</span></button>
+        <button class="btn" onclick="oy_show_benefit()"><span>No&nbsp;&nbsp;✖</span></button>
+    </div>
+    <div id="div_oy_note" onclick="oy_hide_note()" style="text-align: center;">
+        请告诉我Yes！
+        <div id="ul_oy_btn2">
+            <button class="btn" onclick="oy_go_next()"><span>Yes&nbsp;&nbsp;❤</span></button>
+        </div>
+        <div id="div_oy_yes">
+            太好了！哈哈~
         </div>
 </body>
 
 <script>
-    function oy_go_next() {
-        console.log("111")
-    }
-    function oy_show_benefit() {
-        console.log("222")
-    }
-    function oy_hide_note() {
-        console.log("333")
-    }
+    var listItems = document.getElementsByTagName("li");
+
+for (var j = 0; j < listItems.length; j++) {
+    listItems[j].style.display = "none"
+}
+
+        var yesorno = document.getElementById("ul_oy_btn2")
+           yesorno.style.display = "none"
+
+                   var end = document.getElementById("div_oy_yes")
+           end.style.display = "none"
 </script>
 
 </html>
