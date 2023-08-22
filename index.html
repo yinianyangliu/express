@@ -1,241 +1,1115 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<title>water-cup-problem</title>
-<style type="text/css">
-input.n {width: 36px; text-align: center; border: solid 1px #cc0000; margin-right: 1px;}
-td {text-align: center;}
-#btnSolve {width: 80px; height: 30px;}
-</style>
+<!-- saved from url=(0052)http://www.makusi.cn/Home/Play/play_show/ws/YGdllmhm -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>情书是我抄的，但我爱你是真的</title>
+
+    <script>
+        //判断客户端设备，选择写入meta
+        function init_viewport(){
+            console.log(navigator.userAgent);
+            if(navigator.userAgent.indexOf('Android') != -1){
+                document.write('<meta name="viewport" content="width=500, target-densitydpi=device-dpi, user-scalable=0">');
+            }else if(navigator.userAgent.indexOf('iPhone') != -1){
+                var phoneScale= parseInt(window.screen.width)/500;
+                document.write('<meta name="viewport" content="width=500, min-height=750, initial-scale='+phoneScale+', maximum-scale='+phoneScale+', user-scalable=0"/> ');  
+            }else{
+                document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> ');
+            }
+        }
+        init_viewport();
+    </script><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">       
+
+    <!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- IOS中禁用将数字识别为电话号码/忽略Android平台中对邮箱地址的识别 -->
+    <meta name="format-detection" content="telephone=no, email=no">
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">  
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            -webkit-box-sizing: border-box;
+        }
+        body {            
+            background-color: white;
+        }
+        a {
+            color: white;
+            text-decoration: none; 
+        }
+
+        #div_container { /*最外层div，用于居中兼容PC和移动*/
+            position: relative; 
+            width: 500px;
+            margin: 0px auto; 
+            font-size: 1em;
+        }
+        
+        #div_start_bg {
+            position: absolute;
+            left: 0px; 
+            top: 0px;
+            z-index: 44;
+            width: 500px; 
+            height: 100%;
+            background-color: white;
+        }
+
+        #div_music_albumun {
+            display: none;
+            position: relative;
+            width: 500px;
+            height: 815px;
+            overflow: hidden;
+        }
+        #div_music_albumun>div, #div_music_albumun>img {
+            position: absolute;
+        }
+        #img_bg_ma {
+            width: 500px;
+        } 
+
+        #div_ma_text {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            z-index: 99; 
+            width: 500px; 
+            /*height: 90px;*/
+            padding: 0 30px;
+            color: #320000; 
+            font: 1.3em "Microsoft YaHei","微软雅黑","Arial"; 
+            text-shadow: 1px 2px 4px #fff;  
+            text-align: justify;
+            line-height: 1.2em;
+            -webkit-animation:text_bling 1s linear infinite alternate;
+        }
+        @-webkit-keyframes text_bling {
+            from  {
+                -webkit-transform: scale(1);
+            }
+            to    {
+                -webkit-transform: scale(1.04);
+            }
+        }
+
+        #div_ma_end {
+            display: none;   
+            position: absolute;
+            left: 0px; 
+            right: 0px;  /*4个方向定位使div充满整个画画*/
+            top: 0px;
+            bottom: 0px;  /*4个方向定位使div充满整个画画*/
+            z-index: 44; 
+            width: 500px; 
+            height: 100%;
+            padding: 250px 150px; 
+            background: rgba(255,255,255,0.9); /*半透明效果*/
+            text-align: center; 
+            font-size: 1.6em;
+        } 
+    </style>
+
+    <!-- 此模板的主要动画css -->
+    <link rel="stylesheet" type="text/css" href="./情书是我抄的，但我爱你是真的_files/ma_520_love.css">
+
+    <!-- 按钮部分的样式 -->
+    <link type="text/css" rel="stylesheet" href="./情书是我抄的，但我爱你是真的_files/theme_public_btn.css">
+
+        
+
+        
+
+     
+
+     
+
+      
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+        <link type="text/css" rel="stylesheet" href="./情书是我抄的，但我爱你是真的_files/start_onlyyou.css"> 
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+        <link type="text/css" rel="stylesheet" href="./情书是我抄的，但我爱你是真的_files/attachment_timer.css"> 
 </head>
 
-<body>
-<h2>杯子倒水问题求最优解</h2>
-<table cellspacing="0" cellpadding="0" border="0"><tr>
-	<td>3个杯子：</td>
-	<td>A</td>
-	<td>B</td>
-	<td>C</td>
-</tr>
-<tr>
-	<td>初始水量：</td>
-	<td><input class="n" value="0"></td>
-	<td><input class="n" value="0"></td>
-	<td><input class="n" value="0"></td>
-</tr>
-<tr>
-	<td>装满容量：</td>
-	<td><input class="n" value="8"></td>
-	<td><input class="n" value="13"></td>
-	<td><input class="n" value="21"></td>
-</tr>
-</table>
-(如果是2个杯子的题，可将C的两个值设为0)
-<br><input type="checkbox" id="allowEmpty" checked>下水道(允许将杯子水倒入下水道)
-<br><input type="checkbox" id="allowFull" checked>水龙头(允许从水龙头接满水杯)
-<br>结局要求：
-<select id="resultI">
-	<option value="0">A
-	<option value="1">B
-	<option value="2" selected>C
-</select>剩余<input class="n" value="1" id="resultV">
-<br>最大搜索步数：<input class="n" value="20" id="maxdepth">
-<br>最多显示结果数：<input class="n" value="10" id="maxresults">
-<br><button id="btnSolve">求解</button>
-<div id="resultArea"></div>
-<br>新浪微博: <a href="http://weibo.com/cuixiping" target="_blank">@IginCui</a>
-<br>安卓游戏：<a href="https://play.google.com/store/apps/details?id=com.cioraneanu.water" target="_blank">Water Logic</a>
-<br>2013-03-24
+<body style="">
+    <div id="div_container">
+        <div id="div_start_bg"></div> <!-- 用于遮挡主题，作为片头的背景 -->
 
-<script>
-var ALL={};
-var G=[]; //A,B,C,depth,index
-G[0]=[]; //第0步的局面数组
-G[0][0]=[0,0,0];
-var max=[10,7,5];
-var result = {i:1,v:1}; //结果要第0个杯子有1升水
-var maxdepth = 15; //最大搜索深度
-var maxresults = 10; //最多显示结果数
-var found; //搜到正确结果的深度
-var allowEmpty, allowFull;
-var ops;
-var output=[];
-
-function $$(id){return document.getElementById(id);}
-$$('btnSolve').onclick = function (){
-	init();
-	var i=0;
-	while(!search(i)){
-		i++;
-	}
-	$$('resultArea').innerHTML = output.join('');
-};
-function init(){
-	ALL={};
-	G=[]; //A,B,C,depth,index
-	found=undefined;
-	output.length=0;
-	var es = document.getElementsByTagName("input");
-	G[0]=[]; //第0步的局面数组
-	G[0][0]=[+es[0].value,+es[1].value,+es[2].value];
-	ALL[getValue(G[0][0])]=0;  //All[value]=depth
-	max=[+es[3].value,+es[4].value,+es[5].value];
-	result.i=+$$('resultI').value;
-	result.v=+$$('resultV').value;
-	maxdepth=+$$('maxdepth').value;
-	maxresults=+$$('maxresults').value;
-	allowEmpty=$$('allowEmpty').checked?'1':'0';
-	allowFull=$$('allowFull').checked?'1':'0';
-	ops = window['ops_'+allowEmpty+allowFull];
-}
-
-/**
-5 bit
-17=0x11
-24=0x18
-27=0x1B
-15bits能表示一种局面
-每局面最多有12种操作
-[局面值，深度，父局面索引]
-ALL={}以hash存储所有局面
-*/
+                
 
 
-var OPS = [
-	['A入B', function(data){ //0入1
-		give(data,0,1);
-	}],
-	['A入C', function(data){ //0入2
-		give(data,0,2);
-	}],
+        <!-- 按需加载，选择此片头时方才加载 -->
 
-	['B入A', function(data){ //1入0
-		give(data,1,0);
-	}],
-	['B入C', function(data){ //1入2
-		give(data,1,2);
-	}],
 
-	['C入A', function(data){ //2入0
-		give(data,2,0);
-	}],
-	['C入B', function(data){ //2入1
-		give(data,2,1);
-	}],
 
-	['A倒空', function(data){ //0倒空
-		empty(data,0);
-	}],
-	['B倒空', function(data){ //1倒空
-		empty(data,1);
-	}],
-	['C倒空', function(data){ //2倒空
-		empty(data,2);
-	}],
+        
 
-	['A装满', function(data){ //0装满
-		full(data,0);
-	}],
-	['B装满', function(data){ //1装满
-		full(data,1);
-	}],
-	['C装满', function(data){ //2装满
-		full(data,2);
-	}]
-];
-var ops_11=OPS;
-var ops_00=OPS.slice(0,6);
-var ops_01=OPS.slice(0,6).concat(OPS.slice(9));
-var ops_10=OPS.slice(0,9);
 
-function getValue(data){
-	return (data[0]<<12) + (data[1]<<6) + data[2];
-}
-function isOK(data){
-	return data[result.i]===result.v;
-}
-function full(data,i){
-	data[i]=max[i];
-}
-function empty(data,i){
-	data[i]=0;
-}
-function give(data,iFrom,iTo){
-	var sum = data[iFrom]+data[iTo];
-	if(sum>max[iTo]){
-		data[iTo] = max[iTo];
-		data[iFrom] = sum - max[iTo];
-	}else{
-		data[iTo] = sum;
-		data[iFrom] = 0;
-	}
-}
+          
 
-function getStepsStr(steps){
-	for(var i=0,r='',n=steps.length;i<n;i++){
-		r+=ops[steps[i]][0]+'; ';
-	}
-	return r;
-}
-function getOpSteps(data){
-	var r=[],i,n=found;
-	r.unshift(data[3]);
-	pi=data[4];
-	while(--n>0){
-		pdata=G[n][pi];
-		r.unshift(pdata[3]);
-		pi=pdata[4];
-	}
-	return r;
-}
-function search(depth){
-	if(depth+1 > maxdepth){
-		output.push('<br>'+maxdepth+'步之内无解');
-		return true;
-	}
-	var datas = G[depth];
-	depth++;
-	G[depth]=[]; //depth深度的局面数组
-	var i,n,t,v,r=[],c=[];  //r means right, c means continue
-	for(var j=0,m=datas.length;j<m;j++){
-		var data = datas[j];
-		//共12种操作
-		for(i=0,n=ops.length;i<n;i++){
-			t=data.slice(0);
-			ops[i][1](t);
-			t[3]=i; //操作类别
-			t[4]=j; //父索引，用于回溯
-			v = getValue(t);
-			if(ALL.hasOwnProperty(v) && ALL[v]<depth){
-				continue;
-			}
-			ALL[v]=depth;
-			if(isOK(t)){
-				if(!found){
-					found = depth;
-				}
-				r.push(t);
-			}else if(!found){
-				c.push(t);
-			}
-		}
-	}
-	if(found){
-		output.push('<br>找到'+r.length+'种解法，步数'+found+'<ol>');
-		for(i=0,n=r.length;i<n && i<maxresults;i++){
-			var steps = getOpSteps(r[i]);
-			output.push('<li>'+getStepsStr(steps));
-		}
-		output.push('</ol>');
-		return true;
-	}else{
-		for(i=0,n=c.length;i<n;i++){
-			G[depth].push(c[i]);
-		}
-	}
-}
-</script>
 
-</body>
-</html>
+
+        
+
+
+        <!-- 按需加载，选择此片头时方才加载 -->
+            <div id="div_onlyyou" style="display: block; height: 1334px;"><!-- 用于设置背景 -->
+                <div id="div_oy_inner" style="height: 1334px;"><!-- 用于存放content --> 
+                    <div class="div_oy_text">
+                        <h1>做我女朋友好不好</h1>
+                        <img class="img_onlyyou" src="./情书是我抄的，但我爱你是真的_files/img_as_olds_1.png">
+                        <p class="p_oy_text">小可爱，我喜欢你好久了。不只是遇见你，即使只是想起你，都会让我小鹿突突地乱撞。我一定会好好地疼你，你做我女朋友好不好？</p>
+                        <ul id="ul_oy_benefit">
+                            <li class="li_oy_benefit" style="display: list-item;">我会把全部工资都给你</li>                             
+                            <li class="li_oy_benefit" style="display: list-item;">每天做好吃的给你</li>                             
+                            <li class="li_oy_benefit" style="display: list-item;">你睡不着时给你讲故事</li>                             
+                            <li class="li_oy_benefit" style="display: list-item;">给你自由去做喜欢的事情</li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                            <li class="li_oy_benefit"></li>                             
+                        </ul> 
+                    </div> 
+                    <ul id="ul_oy_btn">
+                        <li onclick="oy_go_next()">Yes&nbsp;&nbsp;❤</li>
+                        <li onclick="oy_show_benefit()">No&nbsp;&nbsp;✖</li>
+                    </ul>
+                    <div id="div_oy_note" onclick="oy_hide_note()" style="display: none;">
+                        <img src="./情书是我抄的，但我爱你是真的_files/emoji_kelian.jpg"><br>
+                        请告诉我Yes！
+                        <div id="div_oy_note_close">✖</div>
+                    </div>
+                    <div id="div_oy_yes">
+                        <img src="./情书是我抄的，但我爱你是真的_files/emoji_bixin.jpg"><br>
+                        太好了！哈哈~ 
+                    </div>
+                </div>
+            </div>        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+
+
+
+        <!-- 以下为动画主体播放部分 以下为动画主体播放部分 以下为动画主体播放部分 以下为动画主体播放部分 -->
+        <div id="div_music_albumun" style="height: 754px;"> 
+            <img id="img_bg_ma" src="./情书是我抄的，但我爱你是真的_files/bg_4in12.jpg" style="height: 3016px;">
+
+            <div id="div_page1" class="div_page">
+                <div id="div1v">
+                    <div id="div_img1v"></div>
+                    <img class="img_frame1v" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+                <div id="div1h">
+                    <div id="div_img1h"></div>
+                    <img class="img_frame1h" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+            </div>
+
+            <div id="div_page2" class="div_page">
+                <div id="div21h" class="div_page_inner">
+                    <div id="div_img21h"></div>
+                    <img class="img_frame21h" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                </div>
+                <div id="div21v" class="div_page_inner">
+                    <div id="div_img21v"></div>
+                    <img class="img_frame21v" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                </div>
+                <div id="div22v" class="div_page_inner">
+                    <div id="div_img22v"></div>
+                    <img class="img_frame22v" src="./情书是我抄的，但我爱你是真的_files/frame22.png">
+                </div>
+                <div id="div22h" class="div_page_inner">
+                    <div id="div_img22h"></div>
+                    <img class="img_frame22h" src="./情书是我抄的，但我爱你是真的_files/frame22.png">
+                </div>
+                <img id="img_ribbon2" src="./情书是我抄的，但我爱你是真的_files/ribbon2.png">
+            </div>
+        
+            <div id="div_page3" class="div_page">
+                <div id="div3v" class="div_page_inner">
+                    <div id="div_img3v"></div>
+                    <img class="img_frame3v" src="./情书是我抄的，但我爱你是真的_files/frame3.png">
+                    <img class="img_ribbon3v" src="./情书是我抄的，但我爱你是真的_files/ribbon3.png">
+                </div>
+                <div id="div3h" class="div_page_inner">
+                    <div id="div_img3h"></div>
+                    <img class="img_frame3h" src="./情书是我抄的，但我爱你是真的_files/frame3.png">
+                    <img class="img_ribbon3h" src="./情书是我抄的，但我爱你是真的_files/ribbon3.png">
+                </div>
+                <img id="img_words3" src="./情书是我抄的，但我爱你是真的_files/words3.png">
+            </div>
+
+            <div id="div_page4" class="div_page">
+                <div id="div41h" class="div_page_inner">
+                    <div id="div_img41h"></div>
+                    <img class="img_frame41h" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+                <div id="div41v" class="div_page_inner">
+                    <div id="div_img41v"></div>
+                    <img class="img_frame41v" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+                <div id="div42v" class="div_page_inner">
+                    <div id="div_img42v"></div>
+                    <img class="img_frame42v" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+                <div id="div42h" class="div_page_inner">
+                    <div id="div_img42h"></div>
+                    <img class="img_frame42h" src="./情书是我抄的，但我爱你是真的_files/frame1.png">
+                </div>
+                <img id="img_ribbon4" src="./情书是我抄的，但我爱你是真的_files/ribbon4.png">
+                <img id="img_words4" src="./情书是我抄的，但我爱你是真的_files/words4.png">
+            </div>
+        
+            <div id="div_page5" class="div_page">
+                <div id="div5h">
+                    <div id="div_img5h"></div>
+                    <img class="img_frame5h" src="./情书是我抄的，但我爱你是真的_files/frame3.png">
+                </div>
+                <div id="div5v">
+                    <div id="div_img5v"></div>
+                    <img class="img_frame5v" src="./情书是我抄的，但我爱你是真的_files/frame3.png">
+                </div>
+                <img id="img_ribbon5" src="./情书是我抄的，但我爱你是真的_files/ribbon5.png">
+                <img id="img_words5" src="./情书是我抄的，但我爱你是真的_files/words5.png">
+            </div>
+
+            <div id="div_page6" class="div_page">
+                <img id="img_words61" src="./情书是我抄的，但我爱你是真的_files/words61.png">
+                <img id="img_words62" src="./情书是我抄的，但我爱你是真的_files/words62.png">
+                <div id="div61h">
+                    <div id="div_img61h"></div>
+                    <img class="img_frame61h" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                </div>
+                <div id="div61v" class="div_page_inner">
+                    <div id="div_img61v"></div>
+                    <img class="img_frame61v" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                </div>
+                <div id="div62v" class="div_page_inner">
+                    <div id="div_img62v"></div>
+                    <img class="img_frame62v" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                    <img class="img_ribbon6v" src="./情书是我抄的，但我爱你是真的_files/ribbon6.png">
+                </div>
+                <div id="div62h">
+                    <div id="div_img62h"></div>
+                    <img class="img_frame62h" src="./情书是我抄的，但我爱你是真的_files/frame21.png">
+                    <img class="img_ribbon6" src="./情书是我抄的，但我爱你是真的_files/ribbon6.png">
+                </div>
+            </div>
+
+            <div id="div_title">情书是我抄的，但我爱你是真的</div>
+
+            <img id="img_love520" src="./情书是我抄的，但我爱你是真的_files/520.png">
+            <img id="img_ribbon1" src="./情书是我抄的，但我爱你是真的_files/ribbon1.png">
+            <img id="img_heart1" src="./情书是我抄的，但我爱你是真的_files/11.png">
+            <img id="img_heart2" src="./情书是我抄的，但我爱你是真的_files/12.png">
+            <img id="img_heart4" src="./情书是我抄的，但我爱你是真的_files/14.png">
+            <img id="img_heart3" src="./情书是我抄的，但我爱你是真的_files/13.png">
+            <img id="img_heart5" src="./情书是我抄的，但我爱你是真的_files/15.png">
+        </div>
+        <!-- 以上为动画主体播放部分 以上为动画主体播放部分 以上为动画主体播放部分 以上为动画主体播放部分 -->
+
+
+
+        <div id="div_ma_text"> </div>  <!-- 文字部分 -->
+
+        <div id="div_ma_end" onclick="ma_restart()"><!-- 终止循环部分，用于遮挡主题 -->  
+            <img src="./情书是我抄的，但我爱你是真的_files/replay.png"><br>重新播放
+        </div> 
+
+
+
+        <!-- 按需加载，选择此attachment时方才加载 -->
+            <div id="div_at_timer">
+                <div class="div_timer_main">
+                    <span class="span_timer_desc"></span>
+                    <span class="span_timer_dhis"></span>
+                </div>
+            </div>
+
+
+        <div id="div_btn_container"> <!-- 按钮部分的最外层，处于文档流之中 -->
+            <div id="div_btn_inner"> <!-- 按钮部分内层，用于定位 -->
+
+                <div class="div_music_tips"></div>
+                <div class="div_btn" id="div_music" onclick="music_switch()" style="-webkit-animation: rotate_round 1s linear infinite"> <!-- 音乐按钮部分 -->
+                    <img id="img_music" src="./情书是我抄的，但我爱你是真的_files/ico_music.png"> 
+                    <audio id="audio_music" autoplay="autoplay" loop="loop" src="http://public.jiatuma.com/you_are_my_sunshine.mp3">
+                        <source type="audio/mpeg">  
+                        <!-- 您的浏览器不支持播放音乐 -->
+                    </audio>
+                </div>
+
+                <div class="div_record_tips"></div>
+                <div class="div_btn" id="div_record" onclick="record_switch()" style="animation: 1s linear 0s infinite normal none running rotate_vibrate; display: none;"> <!-- 录音按钮部分 -->
+                    语音
+                    <audio id="audio_record" loop="loop">
+                        <source type="audio/mpeg">  
+                        <!-- 您的浏览器不支持播放音乐 -->
+                    </audio>
+                </div>
+                
+                <!-- 只在提交状态显示 只在提交状态显示 只在提交状态显示 只在提交状态显示 -->
+                  
+                <!-- 只在提交状态显示 只在提交状态显示 只在提交状态显示 只在提交状态显示 -->
+
+                <!-- 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 -->
+                  
+                <!-- 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 -->
+            </div> 
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="./情书是我抄的，但我爱你是真的_files/jquery-2.0.3.min.js"></script> 
+    <script src="./情书是我抄的，但我爱你是真的_files/typed.min.js"></script>
+    <script src="./情书是我抄的，但我爱你是真的_files/assist.js"></script>   
+    <script> 
+        var window_height=Math.max(window.innerHeight,document.documentElement.clientHeight,document.body.clientHeight,$(window).height());
+        console.log('window_height ->'+window_height);
+
+        var theme='520_love';
+        console.log('theme ->'+theme);
+        var theme_content={"bool_save":false};
+        console.log(theme_content);
+
+        var json_music={"bool_save":false};
+        console.log(json_music);
+        var json_record={"bool_save":false};
+        console.log(json_record);
+        var signPackage={"appid":"wx47f716bdd7699533","timestamp":1692624287,"nonceStr":"dMFB3X1TvymGLxQs","url":"http:\/\/www.makusi.cn\/Home\/Play\/play_show\/ws\/YGdllmhm","signature":"4e3fb6a44cc07da585ae929cdffe1eecd2349123","rawString":"jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VHINcjHJVwMsFjJyfreRy7CVwbG2TAo8x4l0bw4fjY1ZbLiNbmLZKeLHO4lH0dzzFg&noncestr=dMFB3X1TvymGLxQs&timestamp=1692624287&url=http:\/\/www.makusi.cn\/Home\/Play\/play_show\/ws\/YGdllmhm"};
+
+        // var main_title='情书是我抄的，但我爱你是真的';
+        // if(main_title=='' || main_title=='null'){
+        //     document.title='情书是我抄的，但我爱你是真的';
+        //     main_title='情书是我抄的，但我爱你是真的';
+        // } 
+
+        $('#div_music_albumun').height(window_height);
+        $('#img_bg_ma').height(3260*(window_height/815)); 
+
+        var m_album_loop=theme_content['m_album_loop']; //读取循环设置        
+        if(typeof(m_album_loop)=='undefined'){ //处理全新作品
+            m_album_loop='loop_n'; //默认是不循环
+        } 
+
+
+
+        //____________________________________________________________________________________
+        //获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字 
+        var m_albumun_text=theme_content['m_albumun_text'];
+        if(typeof(m_albumun_text)=='undefined'){  //处理全新作品
+            var m_albumun_text=random_text_array(12); //获取随机的模板文字 
+        }
+        console.log(m_albumun_text);
+        console.log('m_albumun_text.length->'+m_albumun_text.length);
+
+        var index_ma_text=0;
+        var div_ma_text=document.getElementById('div_ma_text');        
+        function show_text_loop(){ 
+            var str_ma_text=m_albumun_text[index_ma_text];
+            console.log('str_ma_text->'+str_ma_text);
+            if(str_ma_text==''||str_ma_text==false||str_ma_text==null){
+                str_ma_text='…';
+            }
+            var arr_str=str_ma_text.split('');
+            for(var i=0; i<arr_str.length; i++){
+                type_words(str_ma_text,i);
+            }
+            index_ma_text++;
+            if(index_ma_text>m_albumun_text.length-1){
+                index_ma_text=0;
+            }
+        } 
+
+        function type_words(str,i){
+            setTimeout(function(){
+                div_ma_text.innerHTML=str.slice(0, i+1);
+            },i*100);
+        } 
+
+        if(window_height>890){
+            $('#div_ma_text').css({'bottom': 30+(window_height-890)/1.8+'px'});
+            // console.log('bottom_div_ma_text ->'+$('#div_ma_text').height());
+        }
+
+
+
+        //____________________________________________________________________________________
+        //获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 
+        var m_albumun_img=theme_content['m_albumun_img'];
+        if(typeof(m_albumun_img)=='undefined'){ //处理全新作品
+            var m_albumun_img=random_img_array(18);  //获取随机的模板图片 
+        }
+        var arr_img_url=[]; 
+        for(var x=0; x<m_albumun_img.length; x++){ //取出有效图片
+            var img_temp=m_albumun_img[x];
+            if(img_temp!=''&&img_temp!=null){  //只取非空值
+                arr_img_url.push(img_temp);
+            }
+        }
+        if(arr_img_url.length==0){ //针对保存过内容，但没有添加图片或添加图片失败的情况 
+            arr_img_url=random_img_array(18);  //获取随机的模板图片
+            m_albumun_text=random_text_array(12); //获取随机的模板文字 
+            console.log(m_albumun_text);  
+        }
+        console.log(arr_img_url);
+
+
+
+        //以下是图片文字的控制js  
+        var time_title_in;
+        function showtitle(){
+            console.log('showtitle');
+
+            time_title_in = new Date().getTime();
+            id('img_heart1').style.webkitAnimation = 'beat1 0.3s 2 ease-in alternate both';
+            id('img_heart2').style.webkitAnimation = 'beat2 0.3s 2 0.2s ease-in alternate both';
+            id('img_heart3').style.webkitAnimation = 'beat3 0.3s 2 0.4s ease-in alternate both';
+            id('img_heart4').style.webkitAnimation = 'beat4 0.3s 2 0.6s ease-in alternate both';
+            id('img_heart5').style.webkitAnimation = 'beat5 0.3s 2 0.8s ease-in alternate both';
+
+            setTimeout(function(){
+                id('img_heart1').style.webkitAnimation = 'p1_1 2s ease-in-out both';
+                id('img_heart2').style.webkitAnimation = 'p1_2 2s ease-in-out both';
+                id('img_heart3').style.webkitAnimation = 'p1_3 2s ease-in-out both';
+                id('img_heart4').style.webkitAnimation = 'p1_4 2s ease-in-out both';
+                id('img_heart5').style.webkitAnimation = 'p1_5 2s ease-in-out both';
+                id('img_ribbon1').style.webkitAnimation = 'ribbon1-in 1.5s 0.5s linear both';
+                // id('div_title').innerHTML = main_title;
+                id('div_title').style.webkitAnimation = 'title_in 1s 2s linear both';
+
+                setTimeout(function(){
+                    id('img_ribbon1').style.webkitClipPath = 'polygon(0px 0px,0px 146px,357px 146px,357px 0px)';
+                    id('img_ribbon1').style.webkitAnimation = 'title_in1 1s ease-out both';
+                },2000);
+            },1500);
+            load_images();
+            init_attachment();
+        }    
+
+
+
+        var arr_img_width = [];
+        var arr_img_height = [];
+        var index_img_url = 0;
+        var count_img_loaded = 0;
+        var count_img_error = 0;
+        var arr_img_res = [];
+        var time_show_title = 6500; 
+        var img_length_max = 22; 
+
+        function load_images(){ 
+            console.log('load_images');
+            arr_img_width = [];
+            arr_img_height = [];            
+            index_img_url = 0;
+            count_img_loaded = 0;
+            count_img_error = 0; 
+            arr_img_res = [];
+
+            for(var i=0;i<arr_img_url.length;i++) {
+                preload_images(i);
+            }
+        }
+
+        function preload_images(image_index){
+            setTimeout(function(){
+                var dom_img = new Image();
+                dom_img.index = image_index;
+                console.log('image_index_'+image_index+'->'+arr_img_url[image_index]);
+                dom_img.src = arr_img_url[image_index];
+                arr_img_res[image_index] = 'loading';
+                dom_img.onload = image_onload;
+                dom_img.onerror = image_onerror;
+            },image_index*250);
+        }
+
+        function image_onload(event){
+            var dom_img = event.target;
+            var index_img = dom_img.index;
+            if(index_img<img_length_max){
+                count_img_loaded++;
+            }
+
+            arr_img_res[index_img] = dom_img.src;
+            arr_img_height[index_img] = dom_img.height;
+            arr_img_width[index_img] = dom_img.width;
+            // console.log('image_onload->'+arr_img_res[index_img]);
+
+            if(count_img_loaded+count_img_error>=img_length_max || arr_img_url.length==(count_img_loaded+count_img_error)){
+                console.log('count_img_loaded->'+count_img_loaded +' / '+ 'count_img_error->'+count_img_error);
+                if(count_img_loaded == 0)
+                    return;
+                var time_load_imgs_finished = new Date().getTime();
+                var time_load_imgs_cost = Math.abs(time_load_imgs_finished-time_title_in);
+                if(time_load_imgs_cost>time_show_title){
+                    dis_title();
+                }else{
+                    setTimeout(function(){
+                        dis_title();
+                    },time_show_title-time_load_imgs_cost);
+                }
+            }
+        }
+
+        function image_onerror(event){
+            var dom_img = event.target;
+            var index_img = dom_img.index;
+            if(index_img<img_length_max){
+                count_img_error ++;
+            }
+            arr_img_res[index_img] = 'not find';
+
+            if(count_img_loaded+count_img_error>=img_length_max || arr_img_url.length==(count_img_loaded+count_img_error)){
+                console.log('count_img_loaded->'+count_img_loaded +' / '+ 'count_img_error->'+count_img_error);
+                if(count_img_loaded == 0){
+                    return;
+                }
+                var time_load_imgs_finished = new Date().getTime();
+                var time_load_imgs_cost = Math.abs(time_load_imgs_finished-time_title_in);
+                if(time_load_imgs_cost>time_show_title){
+                    dis_title();
+                }else{
+                    setTimeout(function(){
+                        dis_title();
+                    },time_show_title-time_load_imgs_cost);
+                }
+            }
+        }
+
+
+
+        function dis_title(){
+            console.log('dis_title');
+            show_text_loop();
+            setpage(1);
+            setImage('1');
+
+            id('div_page6').style.display = 'none';
+            id('img_ribbon1').style.webkitAnimation = 'p1_7 2s ease-out both';
+            id('img_love520').style.webkitAnimation = 'p1_6 2s ease-out both';
+            id('div_title').style.webkitAnimation = 'title_out 0.5s ease-out both';
+            id('div_page1').style.display = 'block';
+            id('div_page1').style.webkitAnimation = 'div1_in 1s 1s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove1 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height+'px'
+            }, 1500);
+
+            setTimeout(show2, 8000);
+        }
+
+
+
+        function show2(){
+            console.log('show2');
+            show_text_loop();
+            setpage(2);
+            setImage('21');
+            setImage('22');
+
+            id('img_heart1').style.webkitAnimation = 'p2_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p2_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p2_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p2_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p2_5 2s ease-in-out both';
+            id('img_love520').style.webkitAnimation = 'out1_520 1s ease-in-out both';
+            id('img_ribbon1').style.webkitAnimation = 'ribbon1_out 1s ease-in-out both';
+            id('div_page1').style.webkitAnimation = 'div1_out 1s ease-in-out both';
+            id('div_page2').style.display = 'block';
+            id('div_title').style.display = 'block';
+            id('img_ribbon2').style.webkitAnimation = 'ribbon2_in 1.5s 1s ease-out both';
+            id('div21h').style.webkitAnimation = 'div21_in 1.5s 1s ease-out both';
+            id('div22h').style.webkitAnimation = 'div22_in 1.5s 1s ease-out both';
+            id('div21v').style.webkitAnimation = 'div21_in 1.5s 1s ease-out both';
+            id('div22v').style.webkitAnimation = 'div22_in 1.5s 1s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove2 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height*2+'px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show3,8000);
+            }
+        }
+
+        function show3(){
+            console.log('show3');
+            show_text_loop();
+            setpage(3);
+            setImage('3');
+
+            id('img_ribbon2').style.webkitAnimation = 'ribbon2_out 1s linear both';
+            id('div21h').style.webkitAnimation = 'div21_out 1s linear both';
+            id('div22h').style.webkitAnimation = 'div22_out 1s linear both';
+            id('div21v').style.webkitAnimation = 'div21_out 1s linear both';
+            id('div22v').style.webkitAnimation = 'div22_out 1s linear both';
+            id('img_heart1').style.webkitAnimation = 'p3_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p3_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p3_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p3_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p3_5 2s ease-in-out both';
+            id('div_page3').style.display = 'block';
+            id('div3v').style.webkitAnimation = 'div3_in 1.5s 1s ease-out both';
+            id('div3h').style.webkitAnimation = 'div3_in 1.5s 1s ease-out both';
+            id('img_love520').style.webkitAnimation = 'in3_520 1.5s 1s ease-out both';
+            id('img_words3').style.webkitAnimation = 'words_in3 1.5s 1s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove3 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height*3+'px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show4,8000);
+            }
+        }
+
+        function show4(){
+            console.log('show4');
+            show_text_loop();
+            setpage(4);
+            setImage('41');
+            setImage('42');
+
+            id('div3v').style.webkitAnimation = 'div3_out 1s ease-out both';
+            id('div3h').style.webkitAnimation = 'div3_out 1s ease-out both';
+            id('img_love520').style.webkitAnimation = 'out3_520 1s ease-out both';
+            id('img_words3').style.webkitAnimation = 'words_out3 1s ease-out both';
+            id('img_heart1').style.webkitAnimation = 'p4_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p4_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p4_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p4_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p4_5 2s ease-in-out both';
+            id('div_page4').style.display = 'block';
+            id('div41v').style.webkitAnimation = 'div41_in 1.5s 1s ease-out both';
+            id('div42v').style.webkitAnimation = 'div42_in 1.5s 1s ease-out both';
+            id('div41h').style.webkitAnimation = 'div41_in 1.5s 1s ease-out both';
+            id('div42h').style.webkitAnimation = 'div42_in 1.5s 1s ease-out both';
+            id('img_words4').style.webkitAnimation = 'words_in3 1.5s 1s ease-out both';
+            id('img_ribbon4').style.webkitAnimation = 'ribbon4_in 1.5s 1s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove4 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height*2+'px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show5,8000);
+            }
+        }
+
+        function show5(){
+            console.log('show5');
+            show_text_loop();
+            setpage(5);
+            setImage('5');
+
+            id('img_ribbon4').style.webkitAnimation = 'ribbon4_out 1s linear both';
+            id('img_words4').style.webkitAnimation = 'words_out3 1.5s linear both';
+            id('div41v').style.webkitAnimation = 'div41_out 1.5s linear both';
+            id('div42v').style.webkitAnimation = 'div42_out 1.5s linear both';
+            id('div41h').style.webkitAnimation = 'div41_out 1.5s linear both';
+            id('div42h').style.webkitAnimation = 'div42_out 1.5s linear both';           
+            id('img_heart1').style.webkitAnimation = 'p5_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p5_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p5_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p5_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p5_5 2s ease-in-out both';
+            id('div_page5').style.display = 'block';
+            id('div5h').style.webkitAnimation = 'div5_in 1.5s 1s ease-out both';
+            id('div5v').style.webkitAnimation = 'div5_in 1.5s 1s ease-out both';
+            id('img_ribbon5').style.webkitAnimation = 'ribbon5_in 1.5s 2s ease both';
+            id('img_words5').style.webkitAnimation = 'words_in3 1.5s 2s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove5 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height+'px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show6, 8000);
+            }
+        }
+
+        function show6(){
+            console.log('show6');
+            show_text_loop();
+            setpage(6);
+            setImage('61');
+            setImage('62');
+
+            id('img_words5').style.webkitAnimation = 'words_out3 1.5s linear both';
+            id('div5h').style.webkitAnimation = 'div5_out 1.5s linear both';
+            id('div5v').style.webkitAnimation = 'div5_out 1.5s linear both';
+            id('img_ribbon5').style.webkitAnimation = 'ribbon5_out 1.5s linear both';
+            id('img_heart1').style.webkitAnimation = 'p6_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p6_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p6_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p6_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p6_5 2s ease-in-out both';
+            id('div_page6').style.display = 'block';
+            id('div61v').style.webkitAnimation = 'div61_in 1.5s 1s ease-out both';
+            id('div62v').style.webkitAnimation = 'div62_in 1.5s 1s ease-out both';
+            id('div61h').style.webkitAnimation = 'div61_in 1.5s 1s ease-out both';
+            id('div62h').style.webkitAnimation = 'div62_in 1.5s 1s ease-out both';
+            id('img_words61').style.webkitAnimation = 'words_in3 1.5s 2s ease-out both';
+            id('img_words62').style.webkitAnimation = 'left_in 1.5s 2s ease-out both';
+            id('img_love520').style.webkitAnimation = 'love_in 1.5s 3s ease-out both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove6 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: '0px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show1,8000);
+            }
+        }
+
+        function show1(){
+            console.log('show1');
+            show_text_loop();
+            setpage(1);
+            setImage('1');
+
+            id('img_words61').style.webkitAnimation = 'words_out3 1.5s linear both';
+            id('img_words62').style.webkitAnimation = 'left_out 1.5s linear both';
+            id('img_love520').style.webkitAnimation = 'love_out 1.5s linear both';
+            id('div61v').style.webkitAnimation = 'div61_out 1.5s linear both';
+            id('div62v').style.webkitAnimation = 'div62_out 1.5s linear both';
+            id('div61h').style.webkitAnimation = 'div61_out 1.5s linear both';
+            id('div62h').style.webkitAnimation = 'div62_out 1.5s linear both';
+            id('img_heart1').style.webkitAnimation = 'p0_1 2s ease-in-out both';
+            id('img_heart2').style.webkitAnimation = 'p0_2 2s ease-in-out both';
+            id('img_heart3').style.webkitAnimation = 'p0_3 2s ease-in-out both';
+            id('img_heart4').style.webkitAnimation = 'p0_4 2s ease-in-out both';
+            id('img_heart5').style.webkitAnimation = 'p0_5 2s ease-in-out both';
+            id('div_page1').style.webkitAnimation = 'show1_3 1.5s 1s linear both';
+            id('img_love520').style.webkitAnimation = 'show1_1 1.5s 1.5s linear both';
+            id('img_ribbon1').style.webkitAnimation = 'show1_2 1.5s 1s linear both';
+            //-----------------
+            // id('img_bg_ma').style.webkitAnimation = 'bgmove1 1.5s ease both';
+            $('#img_bg_ma').animate({
+                left: '0px',
+                top: -window_height+'px'
+            }, 1500);
+            
+            if(index_img_url==0 && m_album_loop=='loop_n'){
+                console.log('defaulted loop ahead ->'+m_album_loop);
+                setTimeout(function(){
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                },8000); 
+            }else{
+                setTimeout(show2, 8000);
+            }
+        }
+
+
+
+        var divwidth  = {'1h':457,'1v':355,'21h':383,'21v':270,'22h':383,'22v':273,'3h':406,'3v':351,'41h':335,'41v':254,'42h':351,'42v':252,'5h': 414,'5v': 349,'61h':319,'61v':243,'62h':322,'62v': 240};
+        var divheight = {'1h':354,'1v':456,'21h':275,'21v':382,'22h':275,'22v':370,'3h':314,'3v':437,'41h':261,'41v':321,'42h':281,'42v':315,'5h': 330,'5v': 439,'61h':221,'61v':318,'62h':232,'62v': 315};
+        function setImage(int_id){
+            console.log(index_img_url+' img url ->'+arr_img_res[index_img_url]);
+            while(arr_img_res[index_img_url] == 'not find' || arr_img_res[index_img_url] == 'loading'){
+                index_img_url++;
+                if(index_img_url == arr_img_res.length){
+                    index_img_url = 0;
+                }
+            }
+
+            var img_ratio = arr_img_width[index_img_url]/arr_img_height[index_img_url];
+            var dom_div;
+            var dom_div1;
+            var idname;
+            if(img_ratio > 1){
+                dom_div = id('div'+int_id + 'h');
+                dom_div1 = id('div'+int_id + 'v');
+                idname = int_id + 'h';
+            }else{
+                dom_div = id('div'+int_id + 'v');
+                dom_div1 = id('div'+int_id + 'h');
+                idname = int_id + 'v';
+            }
+            dom_div.style.display = 'block';
+            dom_div1.style.display = 'none';
+
+            var height = divheight[idname];
+            var width = divwidth[idname];
+            var dom_div_img = id('div_img'+idname);
+            dom_div_img.style.backgroundImage = 'url('+arr_img_res[index_img_url]+')';
+            // console.log('setimg:'+ dom_div_img.style.backgroundImage);            
+
+            if(img_ratio > (width/height)){
+                dom_div_img.style.backgroundSize = height*img_ratio + 'px '+ height + 'px';
+                dom_div_img.style.backgroundPosition = -((height*img_ratio-width)/2)+'px 0px';
+            }else{
+                dom_div_img.style.backgroundSize = width + 'px '+ width/img_ratio + 'px';
+                dom_div_img.style.backgroundPosition = '0px ' +(-((width/img_ratio-height)/2)) + 'px';
+            }
+            index_img_url++;
+            if(index_img_url == arr_img_res.length){
+              index_img_url = 0;
+            }
+        }
+
+        function setpage(pageindex){
+            // console.log('setpage');
+            for(var i =1 ; i< 7;i++){
+                if(i != pageindex){
+                    id('div_page' + i).style.display = 'none';
+                    if(pageindex == 1){
+                        id('div_page6').style.display = 'block';
+                    }else{
+                        id('div_page'+(pageindex-1)).style.display = 'block';
+                    }
+                }else{
+                    id('div_page' + i).style.display = 'block';
+                }
+            }
+        }
+
+
+
+        function ma_restart(){ //点击重播之后刷新页面
+            location.reload();
+        }
+
+        function id(name){
+            return document.getElementById(name);
+        }
+
+
+
+        function random_text_array(length){  //获取随机的模板文字
+            console.log('random_text_array');
+            var arr_res=[];
+            var arr_random=[];
+            while(arr_random.length<length){
+                // var random_num=Math.floor(Math.random()*(arr_as_pics.length-0))+0;
+                var random_num=Math.floor(Math.random()*(arr_as_words_love.length)); //随机取值 
+                if(arr_random.indexOf(random_num)==-1){
+                    arr_random.push(random_num);
+                }
+            }
+            // console.log(arr_random);
+            for(var i=0; i<length; i++){  
+                arr_res.push(arr_as_words_love[arr_random[i]]); //获取随机的模板文字
+            }
+            return arr_res;
+        }
+
+        
+
+        function random_img_array(length){  //获取随机的模板图片
+            console.log('random_img_array'); 
+            var arr_res=[];
+            var arr_random=[];
+            while(arr_random.length<length){
+                // var random_num=Math.floor(Math.random()*(arr_as_pics.length-0))+0;
+                var random_num=Math.floor(Math.random()*(arr_as_pics.length)); //随机取值 
+                if(arr_random.indexOf(random_num)==-1){
+                    arr_random.push(random_num);
+                }
+            }
+            // console.log(arr_random);
+            for(var i=0; i<length; i++){ 
+                arr_res.push(arr_as_pics[arr_random[i]]); //获取随机的模板图片
+            } 
+            return arr_res;
+        }
+
+
+
+        function bool_empty(p_json,c_key){
+            if(typeof(p_json[c_key])=='undefined' || p_json[c_key]==='' || p_json[c_key]==='null' || p_json[c_key]===null || p_json[c_key]===false){
+                return true;
+            }
+            return false;
+        }
+
+        var wx_share_data={"title":"\u3010YGdllmhm\u3011 \u8fd9\u662f\u6211\u4e3a\u4f60\u5236\u4f5c\u7684H5\u4f5c\u54c1","desc":"\u3010YGdllmhm\u3011 \u6211\u6709\u8bdd\u60f3\u548c\u4f60\u8bf4\uff0c\u5e0c\u671b\u4f60\u80fd\u70b9\u8fdb\u6765\u770b\u770b\uff0c\u6211\u7528\u5fc3\u505a\u4e86\u597d\u4e45\u4e86\u5462","link":"http:\/\/www.makusi.cn\/Home\/Index\/index\/ws\/YGdllmhm","imgUrl":"http:\/\/www.makusi.cn\/Public\/img\/wx_share.jpg"};
+        console.log(wx_share_data); 
+    </script>
+
+
+
+
+
+
+        
+
+     <!-- 按需加载，选择此片头时方才加载 -->
+
+
+
+    <script> 
+        var start_content={"bool_save":false}; //可能为null
+        console.log(start_content); 
+
+        var start;
+        $(function(){
+            //此事件为触发互动创意
+            var start='onlyyou'; //可能为null
+            init_start(start);
+        });
+        
+        function init_start(start){ 
+            console.log('init_start ->'+start);
+            switch(start){
+                case 'loveformat':
+                    $('.div_loveformat').show();
+                    init_loveformat();
+                    break;
+                case 'hearttree':
+                    $('#div_hearttree').show();
+                    init_hearttree();
+                    break;
+                case 'courage':
+                    $('#div_courage').show();
+                    init_courage();
+                    break;
+                case 'birthdaycake':
+                    $('#div_dbcake').show();
+                    init_birthdaycake();
+                    break;
+                case 'intersect':
+                    $('#div_intersect').show();
+                    init_intersect();
+                    break;
+                case 'onlyyou':
+                    $('#div_onlyyou').show();
+                    init_onlyyou();
+                    break;
+                default:
+                    init_theme(); 
+            }
+        } 
+
+        //开始动画主体部分
+        function init_theme(){
+            console.log('init_theme');
+            $('#div_start_bg').fadeOut();
+            $('#div_music_albumun').fadeIn();
+            $('#div_ma_text').show();
+            showtitle();
+        }
+    </script>
+
+
+
+    
+        
+    
+    
+     
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+        <script src="./情书是我抄的，但我爱你是真的_files/start_onlyyou.js"></script>
+
+
+    <script> 
+        var attachment='timer'; //可能为null
+        var attached_content={"bool_save":false}; //可能为null
+        console.log(attached_content); 
+       
+        function init_attachment(){  //开始attachment
+            console.log('init_attachment ->'+attachment);
+            switch(attachment){
+                case 'timer':
+                    init_at_timer();
+                    break;
+                default:
+                    return; 
+            }
+        } 
+    </script>
+
+    <!-- 按需加载，选择此attachment时方才加载 -->
+        <script src="./情书是我抄的，但我爱你是真的_files/attachment_timer.js"></script>
+
+
+    <script src="./情书是我抄的，但我爱你是真的_files/jweixin-1.6.0.js"></script>
+    <script src="./情书是我抄的，但我爱你是真的_files/theme_common.js"></script> <!-- 音乐控制和微信设置等公共部分js外部引入 -->
+
+</body></html>
