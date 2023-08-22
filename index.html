@@ -76,12 +76,10 @@
         <button class="btn" onclick="oy_go_next()"><span>Yes&nbsp;&nbsp;❤</span></button>
         <button class="btn" onclick="oy_show_benefit()"><span>No&nbsp;&nbsp;✖</span></button>
     </div>
-    <div id="div_oy_note" onclick="oy_hide_note()" style="text-align: center;">
+    <div id="div_oy_note" style="text-align: center;">
         请告诉我Yes！
-        <div id="ul_oy_btn2">
-            <button class="btn" onclick="oy_go_next()"><span>Yes&nbsp;&nbsp;❤</span></button>
-        </div>
-        <div id="div_oy_yes">
+          </div>
+        <div id="div_oy_yes" style="text-align: center;">
             太好了！哈哈~
         </div>
 </body>
@@ -89,15 +87,17 @@
 <script>
     var listItems = document.getElementsByTagName("li");
 
-for (var j = 0; j < listItems.length; j++) {
-    listItems[j].style.display = "none"
-}
+    for (var j = 0; j < listItems.length; j++) {
+        listItems[j].style.display = "none"
+    }
 
-        var yesorno = document.getElementById("ul_oy_btn2")
-           yesorno.style.display = "none"
 
-                   var end = document.getElementById("div_oy_yes")
-           end.style.display = "none"
+
+    var end0 = document.getElementById("div_oy_yes")
+        end0.style.display = "none"
+
+    var end1 = document.getElementById("div_oy_note")
+        end1.style.display = "none"
 </script>
 
 </html>
