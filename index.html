@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://www.makusi.cn/Home/Play/play_show/ws/YGdllmhm -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>情书是我抄的，但我爱你是真的</title>
     <script>
         //判断客户端设备，选择写入meta
-        function init_viewport(){
+        function init_viewport() {
             console.log(navigator.userAgent);
-            if(navigator.userAgent.indexOf('Android') != -1){
+            if (navigator.userAgent.indexOf('Android') != -1) {
                 document.write('<meta name="viewport" content="width=500, target-densitydpi=device-dpi, user-scalable=0">');
-            }else if(navigator.userAgent.indexOf('iPhone') != -1){
-                var phoneScale= parseInt(window.screen.width)/500;
-                document.write('<meta name="viewport" content="width=500, min-height=750, initial-scale='+phoneScale+', maximum-scale='+phoneScale+', user-scalable=0"/> ');  
-            }else{
+            } else if (navigator.userAgent.indexOf('iPhone') != -1) {
+                var phoneScale = parseInt(window.screen.width) / 500;
+                document.write('<meta name="viewport" content="width=500, min-height=750, initial-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', user-scalable=0"/> ');
+            } else {
                 document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> ');
             }
         }
         init_viewport();
-    </script><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">       
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -44,7 +48,7 @@
     <!-- QQ应用模式 -->
     <meta name="x5-page-mode" content="app">
     <!-- windows phone 点击无高光 -->
-    <meta name="msapplication-tap-highlight" content="no">  
+    <meta name="msapplication-tap-highlight" content="no">
 
 
 
@@ -53,46 +57,62 @@
 <body style="">
     <div id="div_container">
         <div id="div_start_bg"></div>
-        
-            <div id="div_onlyyou" style="display: block; height: 1174px;"><!-- 用于设置背景 -->
-                <div id="div_oy_inner" style="height: 1174px;"><!-- 用于存放content --> 
-                    <div class="div_oy_text">
-                        <h1>做我女朋友好不好</h1>
-                        <p class="p_oy_text">小可爱，我喜欢你好久了。不只是遇见你，即使只是想起你，都会让我小鹿突突地乱撞。我一定会好好地疼你，你做我女朋友好不好？</p>
-                        <ul id="ul_oy_benefit">
-                            <li class="li_oy_benefit" style="display: list-item;">我会把全部工资都给你</li>                             
-                            <li class="li_oy_benefit" style="display: list-item;">每天做好吃的给你</li>                             
-                            <li class="li_oy_benefit" style="display: list-item;">你睡不着时给你讲故事</li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                            <li class="li_oy_benefit"></li>                             
-                        </ul> 
-                    </div> 
-                    <ul id="ul_oy_btn">
-                        <li onclick="oy_go_next()">Yes&nbsp;&nbsp;❤</li>
-                        <li onclick="oy_show_benefit()">No&nbsp;&nbsp;✖</li>
+
+        <div id="div_onlyyou" style="display: block; height: 1174px;">
+            <!-- 用于设置背景 -->
+            <div id="div_oy_inner" style="height: 1174px;">
+                <!-- 用于存放content -->
+                <div class="div_oy_text">
+                    <h1>做我女朋友好不好</h1>
+                    <p class="p_oy_text">小可爱，我喜欢你好久了。不只是遇见你，即使只是想起你，都会让我小鹿突突地乱撞。我一定会好好地疼你，你做我女朋友好不好？</p>
+                    <ul id="ul_oy_benefit">
+                        <li class="li_oy_benefit" style="display: list-item;">我会把全部工资都给你</li>
+                        <li class="li_oy_benefit" style="display: list-item;">每天做好吃的给你</li>
+                        <li class="li_oy_benefit" style="display: list-item;">你睡不着时给你讲故事</li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
+                        <li class="li_oy_benefit"></li>
                     </ul>
-                    <div id="div_oy_note" onclick="oy_hide_note()">
-                        请告诉我Yes！
-                        <div id="div_oy_note_close">✖</div>
-                    </div>
-                    <div id="div_oy_yes">
-                        太好了！哈哈~ 
-                    </div>
                 </div>
-            </div>  
-</body></html>
+                <ul id="ul_oy_btn">
+                    <li onclick="oy_go_next()">Yes&nbsp;&nbsp;❤</li>
+                    <li onclick="oy_show_benefit()">No&nbsp;&nbsp;✖</li>
+                </ul>
+                <div id="div_oy_note" onclick="oy_hide_note()">
+                    请告诉我Yes！
+                    <div id="div_oy_note_close">✖</div>
+                </div>
+                <div id="div_oy_yes">
+                    太好了！哈哈~
+                </div>
+            </div>
+        </div>
+</body>
+
+<script>
+    function oy_go_next() {
+        console.log("111")
+    }
+    function oy_show_benefit() {
+        console.log("222")
+    }
+    function oy_hide_note() {
+        console.log("333")
+    }
+</script>
+
+</html>
